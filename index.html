@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beautiful 3D Earth with A-Frame</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/protyze/aframe-anim-system@latest/dist/aframe-anim-component.min.js"></script>
   </head>
   <body>
     <a-scene>
@@ -13,20 +12,20 @@
       <a-entity id="stars" particle-system="preset: stars; color: #ffffff; particleCount: 2000"></a-entity>
       <a-light type="ambient" color="#555"></a-light>
       <a-light type="directional" intensity="1" position="-1 1 1"></a-light>
-      <a-entity 
+      <a-sphere 
         id="earth"
-        gltf-model="https://cdn.glitch.com/0dfb2879-ec8e-4b95-b227-5d028e9c4022%2Fearth.gltf?v=1566321792267" 
+        src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/earth.jpg" 
         position="0 1.5 -3" 
-        scale="1 1 1" 
+        radius="1.5" 
         rotation="0 0 0"
         animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
-      </a-entity>
+      </a-sphere>
       <a-entity id="moon-orbit" position="0 1.5 -3">
         <a-sphere 
           id="moon" 
-          radius="0.1" 
+          radius="0.2" 
           color="#aaa" 
-          position="0.7 0 0"
+          position="3 0 0"
           animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear">
         </a-sphere>
       </a-entity>
