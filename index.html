@@ -5,16 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3D Website with A-Frame: Sun and Earth</title>
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script>
+    AFRAME.registerComponent('orbit', {
+      schema: {
+        center: {type: 'vec3'},
+        radius: {type: 'number', default: 10},
+        speed: {type: 'number', default: 0.001}
+      },
+      tick: function (time, timeDelta) {
+        const angle = time * this.data.speed;
+        const x = this.data.center.x + this.data.radius * Math.cos(angle);
+        const z = this.data.center.z + this.data.radius * Math.sin(angle);
+        this.el.setAttribute('position', {x: x, y: this.data.center.y, z: z});
+      }
+    });
+  </script>
 </head>
 <body>
   <a-scene>
-    <a-sphere src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/moon_1024.jpg">
-   </a-sphere> 
-    <a-sphere src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_4096.jpg" radius="2" 
-            segments-height="84">
-   </a-sphere> 
-        <a-sky color="#000"></a-sky>
-        <a-entity camera look-controls position="4 4 4"></a-entity>
+    <!-- Sun -->
+    <a-sphere 
+      id="sun" 
+      src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_4096.jpg" 
+      radius="4" 
+      position="0 0 0">
+    </a-sphere>
+    
+    <!-- Earth -->
+    <a-sphere 
+      id="earth" 
+      src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/moon_1024.jpg" 
+      radius="2" 
+      segments-height="84"
+      orbit="center: 0 0 0; radius: 10; speed: 0.001">
+    </a-sphere>
+    
+    <!-- Sky -->
+    <a-sky color="#000"></a-sky>
+    
+    <!-- Camera -->
+    <a-entity camera look-controls position="0 10 30"></a-entity>
   </a-scene>
 </body>
 </html>
