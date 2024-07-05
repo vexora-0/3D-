@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beautiful 3D Earth with A-Frame</title>
+    <title>Solar System with A-Frame</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   </head>
   <body>
@@ -12,30 +12,40 @@
       <a-entity id="stars" particle-system="preset: stars; color: #ffffff; particleCount: 2000"></a-entity>
       <a-light type="ambient" color="#555"></a-light>
       <a-light type="directional" intensity="1" position="-1 1 1"></a-light>
+
+      <a-sphere 
+        id="sun"
+        src="https://www.solarsystemscope.com/textures/download/2k_sun.jpg"
+        position="0 2 -10" 
+        radius="2.5" 
+        rotation="0 0 0"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 20000">
+      </a-sphere>
+
       <a-sphere 
         id="earth"
-        src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/earth.jpg" 
-        position="0 1.5 -3" 
-        radius="1.5" 
+        src="https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg" 
+        position="5 2 -10" 
+        radius="1" 
         rotation="0 0 0"
         animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
       </a-sphere>
-      <a-entity id="moon-orbit" position="0 1.5 -3">
+
+      <a-entity id="moon-orbit" position="5 2 -10">
         <a-sphere 
           id="moon" 
-          radius="0.2" 
-          color="#aaa" 
-          position="3 0 0"
-          animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear">
+          src="https://www.solarsystemscope.com/textures/download/2k_moon.jpg"
+          radius="0.27" 
+          position="1.5 0 0"
+          animation="property: position; to: -1.5 0 0; dir: alternate; loop: true; dur: 5000">
         </a-sphere>
       </a-entity>
+
       <a-entity 
         camera 
-        position="0 1.6 5" 
+        position="0 1.6 10" 
         look-controls>
-        <a-cursor 
-          color="#FFFFFF">
-        </a-cursor>
+        <a-cursor color="#FFFFFF"></a-cursor>
       </a-entity>
     </a-scene>
   </body>
