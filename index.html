@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar System with A-Frame</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <a-sky color="#000"></a-sky>
-      <a-entity id="stars" particle-system="preset: stars; color: #ffffff; particleCount: 2000"></a-entity>
-      <a-light type="ambient" color="#555"></a-light>
-      <a-light type="directional" intensity="1" position="-1 1 1"></a-light>
-      
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar System with A-Frame</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <a-assets>
+      <img id="sun-texture" src="https://www.solarsystemscope.com/textures/download/2k_sun.jpg">
+      <img id="earth-texture" src="https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg">
+      <img id="moon-texture" src="https://www.solarsystemscope.com/textures/download/2k_moon.jpg">
+    </a-assets>
+
+    <a-sky color="#000"></a-sky>
+    <a-entity id="stars" particle-system="preset: stars; color: #ffffff; particleCount: 2000"></a-entity>
+    <a-light type="ambient" color="#555"></a-light>
+    <a-light type="directional" intensity="1" position="-1 1 1"></a-light>
+    
+    <a-sphere 
+      id="sun"
+      position="0 2 -10" 
+      radius="2.5" 
+      rotation="0 0 0"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 50000"
+      material="src: #sun-texture;">
+    </a-sphere>
+    
+    <a-sphere 
+      id="earth"
+      position="5 2 -10" 
+      radius="1" 
+      rotation="0 0 0"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 30000"
+      material="src: #earth-texture;">
+    </a-sphere>
+    
+    <a-entity id="moon-orbit" position="5 2 -10">
       <a-sphere 
-        id="sun"
-        position="0 2 -10" 
-        radius="2.5" 
-        rotation="0 0 0"
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 50000"
-        material="src: url(https://www.solarsystemscope.com/textures/download/2k_sun.jpg);">
+        id="moon" 
+        radius="0.27" 
+        position="1.5 0 0"
+        animation="property: position; to: -1.5 0 0; dir: alternate; loop: true; dur: 5000"
+        material="src: #moon-texture;">
       </a-sphere>
-      
-      <a-sphere 
-        id="earth"
-        position="5 2 -10" 
-        radius="1" 
-        rotation="0 0 0"
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 30000"
-        material="src: url(https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg);">
-      </a-sphere>
-      
-      <a-entity id="moon-orbit" position="5 2 -10">
-        <a-sphere 
-          id="moon" 
-          radius="0.27" 
-          position="1.5 0 0"
-          animation="property: position; to: -1.5 0 0; dir: alternate; loop: true; dur: 5000"
-          material="src: url(https://www.solarsystemscope.com/textures/download/2k_moon.jpg);">
-        </a-sphere>
-      </a-entity>
-      
-      <a-entity 
-        camera 
-        position="0 1.6 10" 
-        look-controls>
-        <a-cursor color="#FFFFFF"></a-cursor>
-      </a-entity>
-    </a-scene>
-  </body>
+    </a-entity>
+    
+    <!-- Camera and Cursor -->
+    <a-entity 
+      camera 
+      position="0 1.6 10" 
+      look-controls>
+      <a-cursor color="#FFFFFF"></a-cursor>
+    </a-entity>
+  </a-scene>
+</body>
 </html>
